@@ -19,13 +19,54 @@ extern "C" int fileno(FILE *stream);
 
 
 %%
+-?[0-9]+(\.[0-9]*)?          {
+  fprintf(stderr, "Number : %s\n", yytext);
+  char sign = yytext[0];
+  if (sign == '-')
+    yytext++;
+  sscanf(yytext, "%lf", &yylval.numberValue);
+  if (sign == '-')
+    yylval.numberValue *= -1;
+  return Number;
+}
 
-[0-9]+          { fprintf(stderr, "Number : %s\n", yytext); /* TODO: get value out of yytext and into yylval.numberValue */;  return Number; }
+-?[0-9]+(\/[0-9]+)? {
+  fprintf(stderr, "Number : %s\n", yytext);
+  char sign = yytext[0];
+  if (sign == '-')
+    yytext++;
+  double top, bottom;
+  sscanf(yytext, "%lf/%lf", &top, &bottom);
 
-[a-z]+          { fprintf(stderr, "Word : %s\n", yytext); /* TODO: get value out of yytext and into yylval.wordValue */;  return Word; }
+  yylval.numberValue = top / bottom;
+  if (sign == '-')
+    yylval.numberValue *= -1;
+  return Number;
+}
+
+([a-z]|[A-Z])+          {
+  fprintf(stderr, "Word : %s\n", yytext);
+  yylval.wordValue = new std::string;
+  *yylval.wordValue = yytext;
+  return Word;
+}
+
+(\[[^\]]*\]) {
+  fprintf(stderr, "Word : %s\n", yytext);
+  yytext++;
+  yytext[strlen(yytext)-1] = '\0';
+  fprintf(stderr, "%c\n", yytext[strlen(yytext)-1]);
+  yylval.wordValue = new std::string;
+  *yylval.wordValue = yytext;
+  return Word;
+}
+
 
 \n              { fprintf(stderr, "Newline\n"); }
 
+.               {
+return Other;
+}
 
 %%
 
@@ -35,3 +76,5 @@ void yyerror (char const *s)
   fprintf (stderr, "Flex Error: %s\n", s); /* s is the text that wasn't matched */
   exit(1);
 }
+
+

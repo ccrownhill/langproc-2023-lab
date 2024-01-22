@@ -21,26 +21,16 @@ extern "C" int fileno(FILE *stream);
 %%
 -?[0-9]+(\.[0-9]*)?          {
   fprintf(stderr, "Number : %s\n", yytext);
-  char sign = yytext[0];
-  if (sign == '-')
-    yytext++;
   sscanf(yytext, "%lf", &yylval.numberValue);
-  if (sign == '-')
-    yylval.numberValue *= -1;
   return Number;
 }
 
 -?[0-9]+(\/[0-9]+)? {
   fprintf(stderr, "Number : %s\n", yytext);
-  char sign = yytext[0];
-  if (sign == '-')
-    yytext++;
   double top, bottom;
   sscanf(yytext, "%lf/%lf", &top, &bottom);
 
   yylval.numberValue = top / bottom;
-  if (sign == '-')
-    yylval.numberValue *= -1;
   return Number;
 }
 

@@ -747,35 +747,25 @@ YY_RULE_SETUP
 #line 22 "histogram_lexer.flex"
 {
   fprintf(stderr, "Number : %s\n", yytext);
-  char sign = yytext[0];
-  if (sign == '-')
-    yytext++;
   sscanf(yytext, "%lf", &yylval.numberValue);
-  if (sign == '-')
-    yylval.numberValue *= -1;
   return Number;
 }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 33 "histogram_lexer.flex"
+#line 28 "histogram_lexer.flex"
 {
   fprintf(stderr, "Number : %s\n", yytext);
-  char sign = yytext[0];
-  if (sign == '-')
-    yytext++;
   double top, bottom;
   sscanf(yytext, "%lf/%lf", &top, &bottom);
 
   yylval.numberValue = top / bottom;
-  if (sign == '-')
-    yylval.numberValue *= -1;
   return Number;
 }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 47 "histogram_lexer.flex"
+#line 37 "histogram_lexer.flex"
 {
   fprintf(stderr, "Word : %s\n", yytext);
   yylval.wordValue = new std::string;
@@ -786,7 +776,7 @@ YY_RULE_SETUP
 case 4:
 /* rule 4 can match eol */
 YY_RULE_SETUP
-#line 54 "histogram_lexer.flex"
+#line 44 "histogram_lexer.flex"
 {
   fprintf(stderr, "Word : %s\n", yytext);
   yytext++;
@@ -800,22 +790,22 @@ YY_RULE_SETUP
 case 5:
 /* rule 5 can match eol */
 YY_RULE_SETUP
-#line 65 "histogram_lexer.flex"
+#line 55 "histogram_lexer.flex"
 { fprintf(stderr, "Newline\n"); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 67 "histogram_lexer.flex"
+#line 57 "histogram_lexer.flex"
 {
 return Other;
 }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 71 "histogram_lexer.flex"
+#line 61 "histogram_lexer.flex"
 ECHO;
 	YY_BREAK
-#line 819 "histogram_lexer.yy.cpp"
+#line 809 "histogram_lexer.yy.cpp"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1820,7 +1810,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 71 "histogram_lexer.flex"
+#line 61 "histogram_lexer.flex"
 
 
 /* Error handler. This will get called if none of the rules match. */

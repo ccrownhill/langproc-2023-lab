@@ -29,8 +29,6 @@ int main()
         if(type==None){
             break; // No more tokens
 
-        } else if (type == Other) {
-          continue;
         } else if(type == Number){
             // We have a number. The value will be
             // in yylval.numberValue

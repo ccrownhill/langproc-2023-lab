@@ -25,7 +25,7 @@ extern "C" int fileno(FILE *stream);
   return Number;
 }
 
--?[0-9]+(\/[0-9]+)? {
+-?[0-9]+\/[0-9]+ {
   fprintf(stderr, "Number : %s\n", yytext);
   double top, bottom;
   sscanf(yytext, "%lf/%lf", &top, &bottom);
@@ -54,9 +54,7 @@ extern "C" int fileno(FILE *stream);
 
 \n              { fprintf(stderr, "Newline\n"); }
 
-.               {
-return Other;
-}
+.               /* ignore any other characters */
 
 %%
 

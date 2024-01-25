@@ -796,16 +796,14 @@ YY_RULE_SETUP
 case 6:
 YY_RULE_SETUP
 #line 57 "histogram_lexer.flex"
-{
-return Other;
-}
+/* ignore any other characters */
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 61 "histogram_lexer.flex"
+#line 59 "histogram_lexer.flex"
 ECHO;
 	YY_BREAK
-#line 809 "histogram_lexer.yy.cpp"
+#line 807 "histogram_lexer.yy.cpp"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1810,7 +1808,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 61 "histogram_lexer.flex"
+#line 59 "histogram_lexer.flex"
 
 
 /* Error handler. This will get called if none of the rules match. */

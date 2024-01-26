@@ -41,7 +41,7 @@ extern "C" int fileno(FILE *stream);
   return Word;
 }
 
-(\[[^\]]*\]) {
+(\[[^\]\n]*\]) {
   fprintf(stderr, "Word : %s\n", yytext);
   yytext++;
   yytext[strlen(yytext)-1] = '\0';

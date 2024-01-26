@@ -404,7 +404,7 @@ static const YY_CHAR yy_ec[256] =
 
 static const YY_CHAR yy_meta[11] =
     {   0,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1
+        1,    2,    1,    1,    1,    1,    1,    1,    1,    1
     } ;
 
 static const flex_int16_t yy_base[20] =
@@ -774,7 +774,6 @@ YY_RULE_SETUP
 }
 	YY_BREAK
 case 4:
-/* rule 4 can match eol */
 YY_RULE_SETUP
 #line 44 "histogram_lexer.flex"
 {
@@ -803,7 +802,7 @@ YY_RULE_SETUP
 #line 59 "histogram_lexer.flex"
 ECHO;
 	YY_BREAK
-#line 807 "histogram_lexer.yy.cpp"
+#line 806 "histogram_lexer.yy.cpp"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
